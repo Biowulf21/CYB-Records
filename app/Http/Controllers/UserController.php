@@ -65,7 +65,7 @@ class UserController extends Controller
             return response(['messsage' => 'Invalid Login Credentials']);
         }
 
-        $accessToken = Auth::user()->createToken('myToken')->accessToken;
+        $accessToken = Auth::user()->createToken('authToken')->accessToken;
         return response([
             'user' => Auth::user(),
             'access_token' => $accessToken

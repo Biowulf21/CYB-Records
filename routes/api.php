@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ReleaseYearController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\ReleaseYear;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +20,7 @@ use App\Http\Controllers\UserController;
 
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/signup', [UserController::class, 'store']);
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::resource('/release-years', ReleaseYearController::class);
+});

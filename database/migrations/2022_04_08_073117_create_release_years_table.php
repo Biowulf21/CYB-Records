@@ -15,7 +15,7 @@ class CreateReleaseYearsTable extends Migration
     {
         Schema::create('release_years', function (Blueprint $table) {
             $table->id();
-            $table->date('year');
+            $table->year('year');
             $table->string('name');
             $table->softDeletes();
             $table->timestamps();

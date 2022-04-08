@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReleaseYearRequest;
-use App\Http\Requests\UpdateReleaseYearRequest;
+use Illuminate\Http\Request;
 use App\Models\ReleaseYear;
+use Exception;
+use Illuminate\Support\Carbon;
 
 class ReleaseYearController extends Controller
 {
@@ -34,9 +35,24 @@ class ReleaseYearController extends Controller
      * @param  \App\Http\Requests\StoreReleaseYearRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReleaseYearRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+
+        $releaseYear = new ReleaseYear();
+        // $year = Carbon::create($data['year'])->toDateString();
+        // return $year;
+
+
+        try {
+            $releaseYear->year = $data['year'];
+            $releaseYear->name = $data['name'];
+            $releaseYear->save();
+            return response(['message' => 'Sucessfuly made release year'], 200);
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()],    400);
+        }
     }
 
     /**
