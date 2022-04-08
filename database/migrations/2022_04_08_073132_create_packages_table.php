@@ -15,6 +15,10 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('year')->references('id')->on('release_years');
+            $table->double('price');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

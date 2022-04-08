@@ -15,6 +15,12 @@ class CreateSubscribersTable extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('xu_id');
+            $table->foreignId('package');
+            $table->boolean('has_claimed');
+            $table->dateTime('claim_date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
